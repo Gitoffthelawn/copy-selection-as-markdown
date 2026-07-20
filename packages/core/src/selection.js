@@ -8,9 +8,8 @@ export const getSelection = () => {
     if (frames) {
       for (let i = 0; i < frames.length; i++) {
         if (
-          frames[i].contentDocument != null &&
-          frames[i].contentWindow.document != null &&
-          frames[i].contentWindow.document.getSelection() &&
+          frames[i].contentDocument &&
+          frames[i].contentWindow.document?.getSelection() &&
           frames[i].contentWindow.document.getSelection().rangeCount > 0
         ) {
           sel = frames[i].contentWindow.document.getSelection();

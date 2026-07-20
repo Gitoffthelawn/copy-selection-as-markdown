@@ -1,4 +1,4 @@
-import { DEFAULT_OPTIONS, getOptionWithDefault } from "./defaults.js";
+import { getOptionWithDefault } from "./defaults.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   browser.storage.local.get().then(

@@ -1,7 +1,7 @@
 export default function img(turndownService) {
   turndownService.addRule("img", {
     filter: ["img"],
-    replacement: (content, node) => {
+    replacement: (_content, node) => {
       const src = node.getAttribute("src")
         ? `src="${node.getAttribute("src")}"`
         : "";
