@@ -42,7 +42,10 @@
   "optional_host_permissions": ["<all_urls>"],
   "browser_specific_settings": {
     "gecko": {
-      "id": "{db9a72da-7bc5-4805-bcea-da3cb1a15316}"
+      "id": "{db9a72da-7bc5-4805-bcea-da3cb1a15316}",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   }
 }
