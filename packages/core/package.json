@@ -20,8 +20,7 @@
     "clipboard-polyfill": "^4.1.1",
     "regex-escape": "^4.0.0",
     "turndown": "^7.2.4",
-    "turndown-plugin-gfm": "^1.0.2",
-    "url": "^0.11.4"
+    "turndown-plugin-gfm": "^1.0.2"
   },
   "devDependencies": {
     "@types/firefox-webext-browser": "^143.0.0",

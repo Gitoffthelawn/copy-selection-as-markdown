@@ -1,10 +1,8 @@
-import url from "url";
-
 export const resolveRelativeUrls = (container, baseUrl) => {
   // Resolve relative links
   for (const a of container.getElementsByTagName("a")) {
     if (a.hasAttribute("href") && !a.getAttribute("href").startsWith("http")) {
-      a.setAttribute("href", url.resolve(baseUrl, a.getAttribute("href")));
+      a.setAttribute("href", new URL(a.getAttribute("href"), baseUrl).href);
     }
   }
 
@@ -14,7 +12,7 @@ export const resolveRelativeUrls = (container, baseUrl) => {
       img.hasAttribute("src") &&
       !img.getAttribute("src").startsWith("http")
     ) {
-      img.setAttribute("src", url.resolve(baseUrl, img.getAttribute("src")));
+      img.setAttribute("src", new URL(img.getAttribute("src"), baseUrl).href);
     }
   }
 };
