@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@11.15.1",
   "scripts": {
     "build": "pnpm --filter copy-selection-as-markdown-core run build && pnpm --filter copy-selection-as-markdown-firefox --filter copy-selection-as-markdown-chromium run build",
     "test": "pnpm --recursive test",
@@ -23,6 +24,6 @@
   },
   "version": "0.23.0",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.0.0"
   }
 }
