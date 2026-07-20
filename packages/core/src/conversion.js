@@ -1,8 +1,8 @@
 import TurndownService from "turndown";
 import { tables, taskListItems } from "turndown-plugin-gfm";
 import turndownPluginGfmStrikethrough from "./plugins/gfm-strikethrough.js";
-import turndownPluginImgReferenceStyle from "./plugins/img-reference-style.js";
 import turndownPluginImg from "./plugins/img.js";
+import turndownPluginImgReferenceStyle from "./plugins/img-reference-style.js";
 import turndownPluginLinkWithoutStyling from "./plugins/link-without-styling.js";
 import turndownPluginListItem from "./plugins/list-item.js";
 import turndownPluginMathJax from "./plugins/mathjax.js";
@@ -74,7 +74,7 @@ const configureTurndownService = (options) => {
         .replace(/`+(?![`\s\W]).+?`+/g, (match) => match.replace(/`/g, "\\`"))
 
         // Escape link brackets
-        .replace(/[\[\]]/g, "\\$&")
+        .replace(/[[\]]/g, "\\$&")
 
         // Replace angle brackets
         .replace(/</g, "&lt;")
