@@ -202,7 +202,7 @@ By default, no add-on can interfere pre-configured domains for security reason. 
 - `about:config` → `extensions.webextensions.restrictedDomains` preference. See [Configuration Editor for Firefox | Firefox Help](https://support.mozilla.org/en-US/kb/about-config-editor-firefox) for how to change the preference.
 - Starting with Firefox 116, you can also control this behavior for this extension in the Add-ons Manager. See [Why are some add-ons not allowed on sites restricted by Mozilla? | Firefox Help](https://support.mozilla.org/en-US/kb/quarantined-domains?as=u&utm_source=inproduct) for how to change the preference.
 
-Default list of restricted domains (See [modules/libpref/init/all.js](https://searchfox.org/mozilla-central/source/modules/libpref/init/all.js#3147)) as of 2023-08-21:
+Current default list of restricted domains (see [modules/libpref/init/all.js](https://searchfox.org/firefox-main/source/modules/libpref/init/all.js#3147)):
 
   - accounts-static.cdn.mozilla.net
   - accounts.firefox.com
@@ -211,7 +211,6 @@ Default list of restricted domains (See [modules/libpref/init/all.js](https://se
   - api.accounts.firefox.com
   - content.cdn.mozilla.net
   - discovery.addons.mozilla.org
-  - install.mozilla.org
   - oauth.accounts.firefox.com
   - profile.accounts.firefox.com
   - support.mozilla.org
