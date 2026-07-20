@@ -189,7 +189,7 @@ To change shortcut key, click gear icon on top-right and click **Manage Extensio
 - Title Substitution -- line separated texts which will be removed from title text. (supports [regular expressions](https://regex101.com/) if the line starts and ends with `/` e.g. `/^number:\d$/`. Please escape `|` with `\`.) If you add ` - Mozilla | MDN` to the textbox, the copied text wil be:
   - From `[Add-ons - Mozilla | MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons)`
   - To `[Add-ons](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons)`
-- Embed `img`s (.gif, .jpg, .jpeg, .png, and .webp) as base64 -- images will be encoded as base64 text, instead of URL, and added at the end of copied text. Sometime it might fail but useful for backup. See [Permissions](#privacy).
+- Embed `img`s (.gif, .jpg, .jpeg, .png, and .webp) as base64 when possible -- images will be encoded as base64 text, instead of URL, and added at the end of copied text. Browser and server security restrictions may prevent some images from being embedded; those images keep their original URLs. See [Permissions](#privacy).
 
 ## Contributing
 

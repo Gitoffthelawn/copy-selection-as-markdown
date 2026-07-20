@@ -19,20 +19,25 @@ export const resolveRelativeUrls = (container, baseUrl) => {
 
 export const imgToDataUrl = (image) => {
   return new Promise((resolve) => {
+    const originalSrc = image.getAttribute("src");
     const img = new Image();
     img.setAttribute("crossorigin", "anonymous");
     img.onload = function () {
-      let canvas = document.createElement("canvas");
-      canvas.width = this.naturalWidth;
-      canvas.height = this.naturalHeight;
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = this.naturalWidth;
+        canvas.height = this.naturalHeight;
 
-      canvas.getContext("2d").drawImage(this, 0, 0);
-      image.setAttribute("src", canvas.toDataURL("image/png"));
+        canvas.getContext("2d").drawImage(this, 0, 0);
+        image.setAttribute("src", canvas.toDataURL("image/png"));
 
-      resolve(image.src);
-      canvas = null;
+        resolve(image.src);
+      } catch {
+        resolve(originalSrc);
+      }
     };
+    img.onerror = () => resolve(originalSrc);
 
-    img.src = image.getAttribute("src");
+    img.src = originalSrc;
   });
 };

@@ -1,5 +1,5 @@
 import { convertTitleSubstitution } from "../src/utils/title-substitution";
-import { resolveRelativeUrls } from "../src/utils/url-resolver";
+import { imgToDataUrl, resolveRelativeUrls } from "../src/utils/url-resolver";
 
 describe("util", () => {
   describe("convertTitleSubstitution", () => {
@@ -52,6 +52,27 @@ describe("util", () => {
       expect(container.querySelector("img").getAttribute("src")).toBe(
         "https://example.com/docs/images/example.png"
       );
+    });
+  });
+
+  describe("imgToDataUrl", () => {
+    test("keeps the original URL when the image cannot be loaded", async () => {
+      const OriginalImage = global.Image;
+      global.Image = class {
+        setAttribute() {}
+
+        set src(_value) {
+          this.onerror();
+        }
+      };
+      const image = document.createElement("img");
+      image.src = "https://example.com/cross-origin.png";
+
+      try {
+        await expect(imgToDataUrl(image)).resolves.toBe(image.src);
+      } finally {
+        global.Image = OriginalImage;
+      }
     });
   });
 });
