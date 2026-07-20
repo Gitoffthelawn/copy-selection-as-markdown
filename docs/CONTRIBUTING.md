@@ -5,9 +5,8 @@
 - Create a [Firefox Add-ons](https://addons.mozilla.org) (AMO) account
 - Install followings:
   - [WebExtensions](https://developer.mozilla.org/en-US/Add-ons/WebExtensions) enabled [Firefox](https://www.mozilla.org/firefox/)
-  - [Node.js](http://nodejs.org) v20.x
+  - [Node.js](http://nodejs.org) v24.x
   - [pnpm](https://pnpm.io/) for package management (monorepo support)
-  - Python 2.x for compiling `dtrace-provider` (`web-ext` requires this as dependency)
 
 ## Fork on GitHub
 
