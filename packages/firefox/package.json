@@ -9,17 +9,16 @@
     "url": "https://github.com/0x6b/copy-selection-as-markdown"
   },
   "scripts": {
-    "prebuild": "npm-run-all clean generate-icons",
+    "prebuild": "run-s clean generate-icons",
     "build": "node build.js",
     "clean": "rimraf dist/*",
     "generate-icons": "node icons/generate.js",
     "watch:webextension": "web-ext --browser-console --config=web-ext-config.cjs run",
     "watch:js": "node build.js --watch",
-    "watch": "npm-run-all --parallel watch:*",
+    "watch": "run-p watch:*",
     "pregenerate": "run-s build",
     "generate": "web-ext --config=web-ext-config.cjs build",
-    "lint": "web-ext --config=web-ext-config.cjs lint",
-    "test": "exit 0"
+    "lint": "web-ext --config=web-ext-config.cjs lint"
   },
   "devDependencies": {
     "@primer/octicons": "^9.6.0",

@@ -10,7 +10,7 @@
     "url": "https://github.com/0x6b/copy-selection-as-markdown"
   },
   "scripts": {
-    "prebuild": "npm-run-all clean",
+    "prebuild": "pnpm run clean",
     "build": "node build.js",
     "clean": "rimraf dist/*",
     "watch": "node build.js --watch",

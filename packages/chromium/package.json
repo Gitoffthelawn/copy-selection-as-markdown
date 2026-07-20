@@ -14,8 +14,7 @@
     "clean": "rimraf dist/*",
     "watch:webextension": "web-ext --browser-console --config=web-ext-config.cjs run --target chromium",
     "watch:js": "node build.js --watch",
-    "watch": "npm-run-all --parallel watch:*",
-    "test": "exit 0"
+    "watch": "run-p watch:*"
   },
   "dependencies": {
     "webextension-polyfill": "^0.12.0"
