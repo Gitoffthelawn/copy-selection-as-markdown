@@ -14,7 +14,7 @@ chrome.contextMenus.create(
   },
 );
 
-chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+chrome.contextMenus.onClicked.addListener(async (_info, tab) => {
   await chrome.scripting.executeScript({
     target: { tabId: tab.id },
     files: ["browser-polyfill.min.js"],

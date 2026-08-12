@@ -1,0 +1,98 @@
+name: Publish Firefox extension
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-firefox
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Verify release commit is on master
+        run: |
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/master || {
+            echo "::error::Release tag must point to a commit on master"
+            exit 1
+          }
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Validate release versions
+        env:
+          TAG_VERSION: ${{ github.ref_name }}
+        run: |
+          TAG_VERSION="${TAG_VERSION#v}" node <<'NODE'
+          const files = [
+            "package.json",
+            "packages/core/package.json",
+            "packages/firefox/package.json",
+            "packages/chromium/package.json",
+            "packages/firefox/manifest.json",
+            "packages/chromium/manifest.json",
+          ];
+          const expected = process.env.TAG_VERSION;
+          const mismatches = files.flatMap((file) => {
+            const actual = require(`./${file}`).version;
+            return actual === expected ? [] : [`${file}: ${actual}`];
+          });
+          if (mismatches.length > 0) {
+            throw new Error(
+              `Tag version ${expected} does not match:\n${mismatches.join("\n")}`,
+            );
+          }
+          NODE
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test
+        run: pnpm test
+
+      - name: Check formatting
+        run: pnpm check:biome
+
+      - name: Build
+        run: pnpm build
+
+      - name: Lint Firefox extension
+        run: pnpm --filter copy-selection-as-markdown-firefox lint
+
+      - name: Create reviewer source archive
+        run: ./create-source-tarball.sh
+
+      - name: Submit to addons.mozilla.org
+        working-directory: packages/firefox
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
+        run: |
+          test -n "$WEB_EXT_API_KEY"
+          test -n "$WEB_EXT_API_SECRET"
+          VERSION="$(node -p "require('./package.json').version")"
+          pnpm exec web-ext --config=web-ext-config.cjs sign \
+            --channel=listed \
+            --approval-timeout=0 \
+            --upload-source-code="../../artifacts/src/copy_selection_as_markdown-${VERSION}-src.tgz"

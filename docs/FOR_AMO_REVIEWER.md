@@ -1,11 +1,15 @@
 # Build Steps for Reviewers
 
-1. Install pnpm according to [Installation](https://pnpm.io/installation)
-2. Install dependencies
+1. Install Node.js 24.
+2. Enable the pnpm version declared in `package.json`.
    ```sh
-   $ pnpm install
+   $ corepack enable
    ```
-3. Build the project
+3. Install dependencies.
+   ```sh
+   $ pnpm install --frozen-lockfile
+   ```
+4. Build the project.
    ```sh
    $ pnpm run build
    ```

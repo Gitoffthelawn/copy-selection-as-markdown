@@ -1,28 +1,31 @@
 {
   "private": true,
-  "packageManager": "pnpm@11.15.1",
+  "packageManager": "pnpm@11.21.0",
   "scripts": {
-    "build": "pnpm --filter copy-selection-as-markdown-core run build && pnpm --filter copy-selection-as-markdown-firefox --filter copy-selection-as-markdown-chromium run build",
-    "test": "pnpm --recursive test",
+    "build": "run-s build:core build:browsers",
+    "build:core": "pnpm --filter copy-selection-as-markdown-core run build",
+    "build:browsers": "pnpm --filter copy-selection-as-markdown-firefox --filter copy-selection-as-markdown-chromium run build",
+    "test": "pnpm --filter copy-selection-as-markdown-core run test",
     "generate": "pnpm --filter copy-selection-as-markdown-firefox run generate",
     "format": "biome format --write",
-    "lint": "biome lint",
-    "check": "biome check",
+    "check": "run-s check:biome build check:firefox",
+    "check:biome": "biome check",
+    "check:firefox": "pnpm --filter copy-selection-as-markdown-firefox run lint",
     "watch": "run-p watch:*",
     "watch:core": "pnpm --filter copy-selection-as-markdown-core run watch",
     "watch:firefox": "pnpm --filter copy-selection-as-markdown-firefox run watch",
     "clean": "pnpm --recursive run clean",
-    "clean-node_modules": "rimraf packages/**/node_modules && rimraf node_modules"
+    "clean-node_modules": "rimraf packages/**/node_modules node_modules"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.4",
+    "@biomejs/biome": "^2.5.8",
     "@types/firefox-webext-browser": "^143.0.0",
-    "esbuild": "^0.28.1",
+    "esbuild": "^0.28.2",
     "npm-run-all": "^4.1.5",
     "rimraf": "^6.1.3",
-    "web-ext": "^10.5.0"
+    "web-ext": "^10.6.0"
   },
-  "version": "0.23.0",
+  "version": "0.23.1",
   "engines": {
     "node": ">=24.0.0"
   }

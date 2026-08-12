@@ -44,6 +44,31 @@ The project uses [Semantic Versioning 2.0.0](http://semver.org/) and is organize
    ```
 6. Modify source code and firefox will reload the extension automatically
 
+## Publishing to Firefox Add-ons
+
+Pushing a version tag publishes the Firefox extension to the existing public
+listing on [addons.mozilla.org](https://addons.mozilla.org). Before tagging,
+update the version in the root package, every workspace package, and both
+browser manifests. All versions must match the tag without its `v` prefix.
+
+The repository must define these GitHub Actions secrets:
+
+- `WEB_EXT_API_KEY`: the AMO API JWT issuer
+- `WEB_EXT_API_SECRET`: the AMO API JWT secret
+
+Create the credentials on the [AMO API key
+page](https://addons.mozilla.org/developers/addon/api/key/). To publish version
+`0.24.0`, push tag `v0.24.0`:
+
+```sh
+$ git tag v0.24.0
+$ git push origin v0.24.0
+```
+
+The workflow verifies the versions, runs the checks and tests, builds the
+extension and reviewer source archive, then submits the extension to AMO's
+`listed` channel. AMO review and approval may complete after the workflow.
+
 ## Testing
 
 1. Run test cases

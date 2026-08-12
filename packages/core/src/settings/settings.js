@@ -1,4 +1,4 @@
-import { DEFAULT_OPTIONS, getOptionWithDefault } from "./defaults.js";
+import { getOptionWithDefault } from "./defaults.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   browser.storage.local.get().then(
@@ -61,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
         result,
         "titleSubstitution",
       );
-      document.querySelector("#reduceListItemPadding").value =
+      document.querySelector("#reduceListItemPadding").checked =
         getOptionWithDefault(result, "reduceListItemPadding");
-      document.querySelector("#replaceAngleBrackets").value =
+      document.querySelector("#replaceAngleBrackets").checked =
         getOptionWithDefault(result, "replaceAngleBrackets");
     },
     (error) => console.log(`Error: ${error}`),
@@ -104,7 +104,8 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     embedImage,
     titleSubstitution: document.querySelector("#titleSubstitution").value,
     reduceListItemPadding: document.querySelector("#reduceListItemPadding")
-      .value,
-    replaceAngleBrackets: document.querySelector("#replaceAngleBrackets").value,
+      .checked,
+    replaceAngleBrackets: document.querySelector("#replaceAngleBrackets")
+      .checked,
   });
 });
