@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`1.tabs.html 1`] = `"    foo→baz→→bim"`;
 
@@ -1854,7 +1854,7 @@ exports[`492.links.html 1`] = `"\\[foo [bar](/uri)\\](/uri)"`;
 
 exports[`493.links.html 1`] = `"\\[foo _\\[bar [baz](/uri)\\](/uri)_\\](/uri)"`;
 
-exports[`494.links.html 1`] = `"![[foo](uri2)](uri3)"`;
+exports[`494.links.html 1`] = `"![\\[foo\\](uri2)](uri3)"`;
 
 exports[`495.links.html 1`] = `"\\*[foo\\*](/uri)"`;
 
@@ -2158,11 +2158,11 @@ exports[`615.hard_line_breaks.html 1`] = `"\`code span\`"`;
 exports[`616.hard_line_breaks.html 1`] = `"\`code\\ span\`"`;
 
 exports[`617.hard_line_breaks.html 1`] = `
-"[](foo  
-bar)
+"[](<foo  
+bar>)
 
-[](foo  
-bar)"
+[](<foo  
+bar>)"
 `;
 
 exports[`618.hard_line_breaks.html 1`] = `

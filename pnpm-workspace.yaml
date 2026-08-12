@@ -4,3 +4,10 @@ allowBuilds:
   '@biomejs/biome': true
   esbuild: true
   spawn-sync: false
+  unrs-resolver: true
+minimumReleaseAgeExclude:
+  - uuid@11.1.1
+  - adm-zip@0.6.0
+overrides:
+  adm-zip@<0.6.0: ^0.6.0
+  uuid@<11.1.1: ^11.1.1
