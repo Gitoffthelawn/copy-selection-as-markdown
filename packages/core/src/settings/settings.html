@@ -195,7 +195,7 @@
         <label for="titleSubstitution">Title Substitution -- line separated texts which will be removed from title text (supports <a href="https://regex101.com/">regular expressions</a> if the line starts and ends with / e.g. <code>/^number:\d$/</code>. Please escape <code>|</code> with <code>\</code>.)</label>
         <textarea id="titleSubstitution" rows="5"></textarea>
         <input type="checkbox" id="embedImage">
-        <label for="embedImage">Embed <code>img</code>s (.gif, .jpg, .jpeg, .png, and .webp) as base64 text as possible -- images will be encoded as base64 text, instead of URL, and added at the end of copied text. <strong>Ask for the permission to access all websites when clicking Save button, since sometimes referenced images are hosted other than current active tab so <code>activeTab</code> permission is not sufficient.</strong> Unchecking this removes the additional permission.</label>
+        <label for="embedImage">Embed <code>img</code>s (.gif, .jpg, .jpeg, .png, and .webp) as base64 text when possible -- images will be encoded as base64 text, instead of URL, and added at the end of copied text. <strong>This asks for permission to access all websites when clicking Save because referenced images may be hosted outside the current website.</strong> Browser and server security restrictions may prevent some images from being embedded; those images keep their original URLs. Unchecking this removes the additional permission.</label>
     </div>
 
     <button type="submit">Save</button>

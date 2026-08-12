@@ -48,7 +48,7 @@ const configureTurndownService = (options) => {
 
         // Escape hr
         .replace(/^([-*_] *){3,}$/gm, (match, character) =>
-          match.split(character).join("\\" + character),
+          match.split(character).join(`\\${character}`),
         )
 
         // Escape ol bullet points

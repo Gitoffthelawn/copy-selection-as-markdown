@@ -1,6 +1,6 @@
 {
   "name": "copy-selection-as-markdown-core",
-  "version": "0.23.0",
+  "version": "0.23.1",
   "description": "copy-selection-as-markdown core",
   "type": "module",
   "author": "0x6b",
@@ -10,7 +10,7 @@
     "url": "https://github.com/0x6b/copy-selection-as-markdown"
   },
   "scripts": {
-    "prebuild": "npm-run-all clean",
+    "prebuild": "pnpm run clean",
     "build": "node build.js",
     "clean": "rimraf dist/*",
     "watch": "node build.js --watch",
@@ -20,8 +20,7 @@
     "clipboard-polyfill": "^4.1.1",
     "regex-escape": "^4.0.0",
     "turndown": "^7.2.4",
-    "turndown-plugin-gfm": "^1.0.2",
-    "url": "^0.11.4"
+    "turndown-plugin-gfm": "^1.0.2"
   },
   "devDependencies": {
     "@types/firefox-webext-browser": "^143.0.0",
